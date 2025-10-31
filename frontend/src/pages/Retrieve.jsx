@@ -8,7 +8,7 @@ const Retrieve = ({ code }) => {
   useEffect(() => {
     if (!code) return;
     axios
-      .get(`http://localhost:5000/api/files/${code}`)
+      .get(`https://codedvault.onrender.com/api/files/${code}`)
       .then((res) => setFiles(res.data))
       .catch((err) => console.error("Error fetching files:", err));
   }, [code]);
@@ -19,7 +19,7 @@ const Retrieve = ({ code }) => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/files/${code}/${id}`);
+      await axios.delete(`https://codedvault.onrender.com/api/files/${code}/${id}`);
       setFiles((prev) => prev.filter((file) => file._id !== id));
       alert("File deleted successfully!");
     } catch (error) {
@@ -48,7 +48,7 @@ const Retrieve = ({ code }) => {
               <div className="flex gap-3">
                 {/* VIEW BUTTON */}
                 <a
-                  href={`http://localhost:5000/uploads/${file.filename}`}
+                  href={`https://codedvault.onrender.com/uploads/${file.filename}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-md transition"
