@@ -27,7 +27,7 @@ export default function App() {
   // ✅ Fetch files for this access code
   const fetchFiles = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/files/${accessCode}`);
+      const res = await axios.get(`https://codedvault.onrender.com/api/files/${accessCode}`);
       setFiles(res.data);
     } catch (err) {
       console.error("❌ Fetch error:", err);
@@ -36,14 +36,14 @@ export default function App() {
 
   // ✅ View file
   const handleView = (file) => {
-    window.open(`http://localhost:5000/uploads/${file.filename}`, "_blank");
+    window.open(`https://codedvault.onrender.com/uploads/${file.filename}`, "_blank");
   };
 
   // ✅ Delete file
   const handleDelete = async (fileId) => {
     if (!window.confirm("Are you sure you want to delete this file?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/files/${fileId}`);
+      await axios.delete(`https://codedvault.onrender.com/api/files/${fileId}`);
       alert("File deleted successfully!");
       await fetchFiles(); // refresh
     } catch (err) {
@@ -70,7 +70,7 @@ export default function App() {
     formData.append("accessCode", accessCode);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/upload", formData, {
+      const res = await axios.post("https://codedvault.onrender.com/api/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("✅ Uploaded:", res.data);
@@ -93,7 +93,7 @@ export default function App() {
     formData.append("accessCode", accessCode);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/upload", formData, {
+      const res = await axios.post("https://codedvault.onrender.com/api/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("✅ Uploaded (drag-drop):", res.data);
